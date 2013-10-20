@@ -48,7 +48,7 @@ angular.module('publicEducationAdminApp')
        *   Promise of deleting record.
        */
       deleteRecord: function(record) {
-        return $http.delete(BACKEND_URL + '/recordings/' + record._id);
+        return $http.delete(BACKEND_URL + '/recordings/' + record._id + ';' + record.venueId);
       }
     };
   });
