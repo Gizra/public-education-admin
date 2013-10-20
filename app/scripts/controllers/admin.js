@@ -16,11 +16,11 @@ angular.module('publicEducationAdminApp')
     /**
      * Selected record to delete, and prompt confirmation.
      *
-     * @params [{*}]
+     * @params {*}
      *  Record selected.
      */
     $scope.delete = function(record) {
-      // Cache the record to avoid search.
+      // Cache selected record to avoid search.
       $scope.selected = {};
       $scope.selected = record;
 
@@ -30,7 +30,7 @@ angular.module('publicEducationAdminApp')
     /**
      * Execute delete an specific record.
      *
-     * @params [{*}]
+     * @params {*}
      *  Record selected.
      */
     $scope.confirmDelete = function(record) {
@@ -42,15 +42,20 @@ angular.module('publicEducationAdminApp')
     };
 
     /**
-     * refresh the initial view.
+     * Refresh the view with the markers from server.
+     *
+     * @params cache
+     *   Use cache markers if true, from server if false.
      */
-    $scope.refresh = function() {
+    $scope.refresh = function(cache) {
+      if (!cache) {
+        getMarkers();
+      }
       $scope.state = 'markers';
-      $location.path('/');
     };
 
     // Initial request get markers.
     $scope.markers = {};
-    $scope.state = 'markers';
-    getMarkers();
+    $scope.refresh();
+
   });
