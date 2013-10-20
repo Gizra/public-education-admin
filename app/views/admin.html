@@ -19,13 +19,12 @@
 
 <div ng-show="state == 'delete'">
   <p>Delete record</p>
-  <form action="">
-    <div ng-repeat="record in selected">
-      <audio src="{{record.src}}" controls></audio>
-      <span> {{record.text}} / location: {{record.lat}}, {{record.lng}}</span>
-    </div>
+    <audio src="{{selected.src}}" controls></audio>
+    <span> {{selected.text}} / location: {{selected.lat}}, {{selected.lng}}</span>
+
+
     <p>Are you sure?</p>
-    <button ng-click="confirmDelete(record._id)">Yes</button>
-    <button ng-click="cancel()">No</button>
-  </form>
+    <button ng-click="confirmDelete(selected)">Yes</button>
+    <button ng-click="refresh()">No</button>
+
 </div>

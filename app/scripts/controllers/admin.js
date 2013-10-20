@@ -3,7 +3,7 @@
 angular.module('publicEducationAdminApp')
   .controller('AdminCtrl', function ($scope, Marker, $location) {
     /**
-     * Promise to get the all markers
+     * Promise to get the all markers.
      */
     var getMarkers = function() {
       Marker.gettingMarkers().then(function(data) {
@@ -17,38 +17,40 @@ angular.module('publicEducationAdminApp')
      * Selected record to delete, and prompt confirmation.
      *
      * @params [{*}]
-     *  Record selected
+     *  Record selected.
      */
     $scope.delete = function(record) {
+      // Cache the record to avoid search.
+      $scope.selected = {};
+      $scope.selected = record;
 
-      // Cache the record to avoid search
       $scope.state = 'delete';
-      $scope.selected = [];
-      $scope.selected.push(record);
     };
 
     /**
      * Execute delete an specific record.
      *
      * @params [{*}]
-     *  Record selected
+     *  Record selected.
      */
     $scope.confirmDelete = function(record) {
-      // Performance delete record on server
-      //Marker.delete(record)
-
-
-      // Cache the record to avoid search
-      $scope.state = 'delete';
-      $scope.selected = [];
-      $scope.selected.push(record);
+      // Performance delete record on server.
+      Marker.deleteRecord(record)
+        .then(function() {
+          $scope.refresh();
+        });
     };
 
-
+    /**
+     * refresh the initial view.
+     */
+    $scope.refresh = function() {
+      $scope.state = 'markers';
+      $location.path('/');
+    };
 
     // Initial request get markers.
     $scope.markers = {};
     $scope.state = 'markers';
     getMarkers();
-
   });

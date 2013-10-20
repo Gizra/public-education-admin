@@ -8,14 +8,14 @@ angular.module('publicEducationAdminApp')
       /**
        * Private variable to hold the state.
        *
-       * data.marker: List of markers in cache
+       * data.marker: List of markers in cache.
        */
       data: {
         markers: null
       },
 
       /**
-       * Get Leaflet markers.
+       * Get markers.
        *
        * @param cache
        *   Determine if a request to the server should be done. Defaults to
@@ -43,9 +43,12 @@ angular.module('publicEducationAdminApp')
 
       /**
        * Delete a specific record
+       *
+       * @return {*}
+       *   Promise of deleting record.
        */
-      deleteRecord: function() {
-
+      deleteRecord: function(record) {
+        return $http.delete(BACKEND_URL + '/recordings/' + record._id);
       }
     };
   });
