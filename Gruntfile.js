@@ -26,6 +26,14 @@ module.exports = function (grunt) {
     yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app;
   } catch (e) {}
 
+  // Custom config found in config.json (if exists).
+  try {
+    var evnConfig = require('./config.json');
+    if (evnConfig) {
+      grunt.util._.extend(yeomanConfig, evnConfig);
+    }
+  } catch (e) {}
+
   grunt.initConfig({
     yeoman: yeomanConfig,
     watch: {
