@@ -341,6 +341,31 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    ngconstant: {
+      options: {
+        space: '  '
+      },
+
+      // targets
+      development: [{
+        dest: '<%= yeoman.app %>/scripts/config.js',
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        name: 'config',
+        constants: {
+          ENV: 'development',
+          BACKEND_URL: '<%= yeoman.development.BACKEND_URL %>'
+        }
+      }],
+      production: [{
+        dest: '<%= yeoman.dist %>/scripts/config.js',
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        name: 'config',
+        constants: {
+          ENV: 'production',
+          BACKEND_URL: '<%= yeoman.production.BACKEND_URL %>'
+        }
+      }]
     }
   });
 
