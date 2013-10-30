@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('publicEducationAdminApp')
-  .controller('AdminCtrl', function ($scope, Marker, $location) {
+  .controller('AdminCtrl', function ($scope, Marker) {
     /**
      * Promise to get the all markers.
      */
