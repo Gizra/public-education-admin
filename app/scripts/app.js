@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('publicEducationAdminApp', [])
+angular.module('publicEducationAdminApp', ['config'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl'
       })
       .otherwise({
         redirectTo: '/'

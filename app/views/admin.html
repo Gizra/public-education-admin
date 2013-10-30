@@ -1,0 +1,30 @@
+<div ng-show="state == 'markers'">
+  <h5>User markers</h5>
+  <div class="container">
+    <ul>
+      <li ng-repeat="marker in markers">
+        <input type="checkbox"/>
+        <span>{{marker.name}}</span>
+        <ul>
+          <li ng-repeat="record in marker.playList">
+            <a ng-click="delete(record)" href>delete</a>
+            <audio src="{{record.src}}" controls></audio>
+            <span> {{record.text}} / location: {{record.lat}}, {{record.lng}}</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div ng-show="state == 'delete'">
+  <p>Delete record</p>
+    <audio src="{{selected.src}}" controls></audio>
+    <span> {{selected.text}} / location: {{selected.lat}}, {{selected.lng}}</span>
+
+
+    <p>Are you sure?</p>
+    <button ng-click="confirmDelete(selected)">Yes</button>
+    <button ng-click="refresh(true)">No</button>
+
+</div>
